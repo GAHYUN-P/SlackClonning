@@ -34,8 +34,8 @@ const ExamSignup = ({ submitForm }) => {
         return;
       }
 
-      axiosInstance.post('/api/login', {
-        userEmail: user_email,
+      axiosInstance.post('/user/login', {
+        username: user_email,
         password: user_pwd,
       }).then((response) => {
         const accessToken = response.data.token
