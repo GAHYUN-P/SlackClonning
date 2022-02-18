@@ -41,17 +41,17 @@ const initialState = {
 
 const signUpDB = (id, nickname, pwd, pwdcheck) => {
   return function (dispatch) {
-    axiosInstance.post(`/api/signup`, {
+    axiosInstance.post(`/user/signup`, {
         username: id,
         nickname: nickname,
         password: pwd,
-        passwordcheck: pwdcheck,
+        // passwordcheck: pwdcheck,
       })
       .then((response) => {
         console.log(response.data);
         dispatch(signUp(id, nickname, pwd));
         window.alert('가입을 축하드려요!');
-        history.push('/login')
+        // history.push('/login')
       })
       .catch((err) => {
         console.log(`회원가입 오류 발생: ${err}`);
@@ -69,7 +69,7 @@ const log_Out = () => {
 
 const getUserCheck = () =>{
   return function (dispatch, getState, {history}){
-    axiosInstance.get(`/api/idCheck`, {
+    axiosInstance.get(`/user/idCheck`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
