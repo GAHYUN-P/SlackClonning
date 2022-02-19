@@ -34,14 +34,17 @@ const ExamSignup = ({ submitForm }) => {
         return;
       }
 
-      axiosInstance.post('/api/login', {
-        userEmail: user_email,
+      axiosInstance.post('/user/login', {
+        username: user_email,
         password: user_pwd,
       }).then((response) => {
-        const accessToken = response.data.token
+        console.log(response)
+        // const accessToken = response.data.token
+        const accessToken = response.headers.authorization
         TokenToCookie(accessToken);
-        localStorage.setItem("token", accessToken)
-        window.location.href="/"
+        localStorage.setItem("token", accessToken);
+        window.alert('로그인 성공!');
+        // window.location.href="/"
       }).catch((error) => {
         setErr_login("이메일 혹은 비밀번호가 잘못 입력되었습니다")
         console.log(error)
